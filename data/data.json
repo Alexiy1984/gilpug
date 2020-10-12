@@ -1,0 +1,19 @@
+{
+  "pugs": [
+    {
+      "name": "Puppy",
+      "age": 3,
+      "gender": "male"
+    },
+    {
+      "name": "Buddy",
+      "age": 5,
+      "gender": "male"
+    },
+    {
+      "name": "Girl",
+      "age": 1,
+      "gender": "female"
+    }
+  ]
+}
