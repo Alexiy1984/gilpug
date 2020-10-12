@@ -7,7 +7,8 @@ sync = require('browser-sync').create(),
 fs = require('fs'),
 sass = require('gulp-sass'),
 concat = require('gulp-concat'),
-autoprefixer = require('gulp-autoprefixer');
+autoprefixer = require('gulp-autoprefixer'),
+plumber = require('gulp-plumber');
 
 var sassOptions = {
   outputStyle: 'expanded',
@@ -19,6 +20,7 @@ var prefixerOptions = {
  
 function  buildHTML(cb) {
   src('views/*.pug')
+    .pipe(plumber())
     .pipe(data(function(file) {
       return JSON.parse(fs.readFileSync('./data/data.json'))
     }))
@@ -49,8 +51,9 @@ function browserSync(cb) {
       }
   });
 
-  watch('views/**.pug', buildHTML);
-  watch('views/partials/**.pug', buildHTML);
+
+  watch('./views/*.pug', buildHTML);
+  watch('./views/**/*.pug', buildHTML);
   watch('./public/**.html').on('change', sync.reload);
 }
 
